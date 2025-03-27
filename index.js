@@ -9,3 +9,6 @@ function getUserData(id) {
   };
 }
 
+const dbData = central(id).then((retrievedDbName) => {
+    return getFromDb(retrievedDbName); // Get the data from the correct database
+  });

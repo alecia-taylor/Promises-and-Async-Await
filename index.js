@@ -58,3 +58,22 @@ const vaultData = vault(id); // Fetch secure details from 'vault'
     getUserData(true), // This will throw an error
     getUserData(11),
   ];
+
+  // Wait for all user requests to finish
+const userData = await Promise.all(usersQuery).then((results) => {
+    return results; // Return the final results
+  });
+  
+  const app = document.getElementById("app");
+  const timer = document.createElement("h2");
+  timer.textContent = "Check console for time stamps"; // Notify users on where to look
+  app.appendChild(timer);
+  
+  // Display each user's data on the page
+  userData.forEach((person) => {
+    const pre = document.createElement("pre");
+    pre.textContent = JSON.stringify(person, null, 2); // Print the JSON data
+    app.appendChild(pre);
+  });
+  
+  console.timeEnd("Overall Time"); // Stop the overall timer!

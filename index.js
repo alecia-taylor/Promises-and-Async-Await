@@ -43,3 +43,18 @@ const vaultData = vault(id); // Fetch secure details from 'vault'
       company: data.company,
     }));
   }
+
+  const usersQuery = [
+    getUserData(1),
+    getUserData(2),
+    getUserData(3),
+    getUserData(4),
+    getUserData(5),
+    getUserData(6),
+    getUserData(7),
+    getUserData(8),
+    getUserData(9),
+    getUserData(10),
+    getUserData(true), // This will throw an error
+    getUserData(11),
+  ];

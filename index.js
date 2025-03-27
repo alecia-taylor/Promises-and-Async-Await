@@ -12,3 +12,5 @@ function getUserData(id) {
 const dbData = central(id).then((retrievedDbName) => {
     return getFromDb(retrievedDbName); // Get the data from the correct database
   });
+
+const vaultData = vault(id); //Fetch secure details from 'vault'

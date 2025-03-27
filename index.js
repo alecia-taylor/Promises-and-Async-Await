@@ -29,3 +29,9 @@ const vaultData = vault(id); // Fetch secure details from 'vault'
         company: dbObj.company,
       };
     })
+    .catch((error) => {
+        console.log(error); // If something goes wrong, log it
+        console.timeEnd("Overall time for ID " + id); // Stop timer even if there's an error
+        return "Error"; // Return aN error message
+      });
+  

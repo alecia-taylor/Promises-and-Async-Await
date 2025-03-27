@@ -12,5 +12,20 @@ function getUserData(id) {
 const dbData = central(id).then((retrievedDbName) => {
     return getFromDb(retrievedDbName); // Get the data from the correct database
   });
+const vaultData = vault(id); // Fetch secure details from 'vault'
 
-const vaultData = vault(id); //Fetch secure details from 'vault'
+// Wait for both the database and vault to return data
+  return Promise.all([dbData, vaultData])
+    .then(([dbObj, vaultObj]) => {
+      console.timeEnd("Request time for ID " + id); // Stop timer for this user
+      return {
+        id: id,
+        name: vaultObj.name, // Sensitive user info from vault
+        username: dbObj.username, // Public user info from database
+        email: vaultObj.email,
+        address: vaultObj.address,
+        phone: vaultObj.phone,
+        website: dbObj.website,
+        company: dbObj.company,
+      };
+    })

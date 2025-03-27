@@ -35,3 +35,11 @@ const vaultData = vault(id); // Fetch secure details from 'vault'
         return "Error"; // Return aN error message
       });
   
+      // Helper function to retrieve data from the correct database
+  function getFromDb(dbName) {
+    return dbs[dbName](id).then((data) => ({
+      username: data.username,
+      website: data.website,
+      company: data.company,
+    }));
+  }
